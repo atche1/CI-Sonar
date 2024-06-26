@@ -9,7 +9,7 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/api")
 public class CatFactController {
-    @Autowired
+
     private CatFactRepository catFactRepository;
 
     private final CatFactService catFactService;
@@ -18,7 +18,8 @@ public class CatFactController {
     private CatFactPost catFactPost;
 
     @Autowired
-    public CatFactController(CatFactService catFactService, CatFactClient catFactClient,CatFactPost catFactPost) {
+    public CatFactController(CatFactRepository catFactRepository, CatFactService catFactService, CatFactClient catFactClient, CatFactPost catFactPost) {
+        this.catFactRepository = catFactRepository;
         this.catFactPost = catFactPost;
         this.catFactService = catFactService;
         this.catFactClient = catFactClient;
