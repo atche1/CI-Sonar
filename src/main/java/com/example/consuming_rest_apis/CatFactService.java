@@ -1,6 +1,5 @@
 package com.example.consuming_rest_apis;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -9,7 +8,6 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -18,8 +16,12 @@ import java.io.InputStreamReader;
 
 @Service
 public class CatFactService {
-    @Autowired
+
     private CatFactRepository catFactRepository;
+
+    public CatFactService(CatFactRepository catFactRepository) {
+        this.catFactRepository = catFactRepository;
+    }
 
     public String getCatFact() throws IOException {
         String url = "https://catfact.ninja/fact";
